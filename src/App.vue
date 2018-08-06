@@ -1,29 +1,89 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <navbar></navbar>
+    <div class="fixed right">
+      <transition-group name="fade">
+        <div v-for="(alert, key) in alerts" :key="key" >
+          <div class="alert round-border" :class="alert.type" v-html="alert.message"></div>
+        </div>
+      </transition-group>
+      
     </div>
-    <router-view/>
+    <div class="container-fluid">
+      <router-view/>
+    </div>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import Navbar from './components/Navbar'
+const eventBus = require('./assets/events.js').eventBus;
+export default {
+  name: 'app',
+  components: {
+    Navbar: Navbar
+  },
+  data(){
+    return {
+      alerts: []
+    };
+  },
+  methods: {
+    success(message){
+      let obj = {
+        type: 'success',
+        message: message
+      };
+      this.alerts.push(obj);
+      this.restore(obj);
+    },
+    warning(message){
+      let obj = {
+        type: 'warning',
+        message: message
+      };
+      this.alerts.push(obj);
+      this.restore(obj);
+    },
+    danger(message){
+      let obj = {
+        type: 'danger',
+        message: message
+      };
+      this.alerts.push(obj);
+      this.restore(obj);
+    },
+    default(message){
+      let obj = {
+        type: '',
+        message: message
+      };
+      this.alerts.push(obj);
+      this.restore(obj);
+    },
+    restore(obj){
+      let index = this.alerts.indexOf(obj);
+      if(index > -1){
+        setTimeout(() => {
+          this.alerts.splice(0, 1);
+        }, 3500);
+        
+      }
+      
     }
+  },
+  created(){
+    eventBus.$on('success alert', this.success);
+    eventBus.$on('warning alert', this.warning);
+    eventBus.$on('danger alert', this.danger);
+    eventBus.$on('default alert', this.default);
   }
+
 }
+</script>
+
+
+
+<style lang="less">
+
 </style>

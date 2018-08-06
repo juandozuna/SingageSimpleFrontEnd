@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Screen from './views/Screens.vue'
+import Testing from './views/Testing.vue'
 
 Vue.use(Router)
 
@@ -14,10 +16,24 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/screens',
+      component: Screen,
+      children: [
+        { 
+          path: '/:name/details',
+          name: 'screen.detail',
+          component:  () => import('./views/screens/ScreenDetails.vue')
+        }
+      ]
+    },
+    ,
+    {
+      path: '/test', //Path to test components
+      name: 'testroute',
+      component: Testing
     }
   ]
 })
