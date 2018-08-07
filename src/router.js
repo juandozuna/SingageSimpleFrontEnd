@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Screen from './views/Screens.vue'
+import ScreenDetails from './views/screens/ScreenDetails.vue'
+import ScreenAdd from './views/screens/ScreenAdd.vue'
 import Testing from './views/Testing.vue'
 
 
@@ -20,17 +22,20 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/screens',
-      component: Screen,
+      path: '/screens', component: Screen,
       children: [
         { 
-          path: '/:id/details',
+          path: ':id/details',
           name: 'screen.detail',
-          component:  () => import('./views/screens/ScreenDetails.vue')
+          component: ScreenDetails
+        },
+        {
+          path: 'add',
+          name: 'screen.add',
+          component: ScreenAdd
         }
       ]
     },
-    ,
     {
       path: '/test', //Path to test components
       name: 'testroute',

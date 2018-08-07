@@ -30,7 +30,6 @@ export default {
 
 
 <style lang="less">
-  @import '../assets/main.less';
 
 
 </style>

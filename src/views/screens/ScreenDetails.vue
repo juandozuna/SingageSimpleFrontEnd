@@ -50,11 +50,13 @@
       .col.s3
         ul.collection
           li.collection-item(v-for="(slide, key) in allSlides", :key="key") 
-            button.btn-small.green.lighten-2.round-border.margin-right.white-text(@click="addToScreen(slide)") Add
+            button.btn-small.green.lighten-2.round-border.margin-right.white-text(@click="addToScreen(slide)" ) Add
             | {{slide.title}} <span class="grey-text text-lighten-1 smallText">{{slide.role}}</span>
             img.right(:src="slide.image",v-if="slide.role == 'image'",width="40px",height="30px")
             video-embeder.right(v-else, :type="slide.role", :code="slide.video", :showControls="false", :autoplay="false" styles="height: 30px; width: 40px; display: inline-block")
-    
+      .col.s9.margin-top.round-border.z-depth-3
+        dashboard-slider(:slides="slides")
+
 </template>
 
 
@@ -63,6 +65,7 @@ const apiUrl = require('../../assets/variables.js').apiUrl;
 const eventBus = require('../../assets/events.js').eventBus;
 import Axios from 'axios';
 import VideoEmbeder from '../../components/Videos/VideoEmbeder';
+import DashboardSlider from '../../components/revealJs/DashboardSlider';
 const axios = require('axios');
 
 import SlideCard from '@/components/SlideCard.vue';
@@ -70,7 +73,8 @@ export default {
   name: 'screen-details',
   components: {
     SlideCard: SlideCard,
-    VideoEmbeder: VideoEmbeder
+    VideoEmbeder: VideoEmbeder,
+    DashboardSlider: DashboardSlider
   },
   data(){
     return{
@@ -84,7 +88,7 @@ export default {
   },
   methods: {
     getDetails(){
-      Axios.get(`${apiUrl}/screens/single/${this.$route.params.name}`)
+      Axios.get(`${apiUrl}/screens/single/${this.$route.params.id}`)
         .then((resp) => {
           console.log('data');
           console.log(resp);
@@ -97,8 +101,10 @@ export default {
     },
     slideRemoved(slide){
       let i = this.slides.indexOf(slide);
+      let r = this.screen.slides.indexOf(slide._id);
       if(i > -1)
         this.slides.splice(i, 1);
+        this.screen.slides.splice(r, 1);
            M.toast({html: "<strong>Slide</strong> was succesfully removed from " + this.screen.name, classes: ' green'});
     },
     addToScreen(slide){
@@ -113,6 +119,7 @@ export default {
           if(resp.data.nModified === 1){
           console.log(resp);
           this.slides.push(slide);
+          this.screen.slides.push(slide._id);
            M.toast({html: "<strong>Slide</strong> was succesfully added to " + this.screen.name, classes: ' green'});
           }
           else {
@@ -144,7 +151,7 @@ export default {
               M.toast({html: "The " + this.screen.name + " data was succesfully updated", classes: ' green'});
             }
             else if(resp.data.nModified === 0){
-              M.toast({html: "The slide you're trying to add, already exists in this screen", classes: ' yellow'});
+              M.toast({html: "Try to set info not present in other screen", classes: ' yellow darken-2'});
             }
             else if(resp.data.ok === 0){
               this.screen.name = this.name;

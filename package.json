@@ -8,14 +8,18 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
+    "animate.css": "^3.7.0",
     "axios": "^0.18.0",
+    "eagle.js": "^0.3.0",
     "pug-plain-loader": "^1.0.0",
+    "reveal.js": "^3.7.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
     "@vue/cli-service": "^3.0.0-rc.10",
+    "ajv": "^6.5.2",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "pug": "^2.0.3",
