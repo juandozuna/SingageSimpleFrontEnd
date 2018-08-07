@@ -1,7 +1,12 @@
 <template>
 <div>
-  <h4 class="primary-text">Registered Slides</h4>
-  <slide-card v-for="(slide, key) in slides" :key="key" colSize="s2" :slide="slide"></slide-card>
+  <div class="row margin-top">
+      <h4 class="primary-text left">Registered Slides</h4>
+      <a class="btn-floating btn-large waves-effect waves-light red right margin-top" style="margin-right: 50px" title="Add Screen"><i class="material-icons">add</i></a>
+    </div>
+    <div class="row">
+      <slide-card v-for="(slide, key) in slides" :key="key" colSize="s2" :slide="slide"></slide-card>
+    </div>
 </div>
 
 </template>

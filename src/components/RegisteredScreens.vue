@@ -1,7 +1,14 @@
 <template>
    <div>
-     <h4 class="primary-text">Registered Screens</h4>
-     <screen-card v-for="(s, i) in screens" :key="i" :screen="s" :frameworks="frameworks"></screen-card>
+     <div class="row">
+       <h4 class="primary-text left">Registered Screens</h4>
+        <router-link :to="{name: 'screen.add'}" class="btn-floating btn-large waves-effect waves-light red right margin-top"
+         style="margin-right: 50px" title="Add Screen"><i class="material-icons">add</i>
+         </router-link>
+     </div>
+     <div class="row">
+        <screen-card v-for="(s, i) in screens" :key="i" :screen="s" :frameworks="frameworks"></screen-card>
+     </div>
    </div>
 </template>
 

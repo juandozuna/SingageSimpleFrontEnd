@@ -10,7 +10,7 @@
               <div v-show="opened"><br></div>
         </div>
         <div class="card-action">
-          <router-link :to="{name: 'screen.detail', params: {name: screen.name}}">Details</router-link>
+          <router-link :to="{name: 'screen.detail', params: {id: screen._id}}">Details</router-link>
           <a class="activator click-pointer" @click="options">Options</a>
         </div>
         <div class="card-reveal">

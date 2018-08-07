@@ -4,8 +4,6 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-const bus = new Vue();
-
 new Vue({
   router,
   render: h => h(App)

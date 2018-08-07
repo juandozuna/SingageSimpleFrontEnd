@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Screen from './views/Screens.vue'
 import Testing from './views/Testing.vue'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -23,7 +24,7 @@ export default new Router({
       component: Screen,
       children: [
         { 
-          path: '/:name/details',
+          path: '/:id/details',
           name: 'screen.detail',
           component:  () => import('./views/screens/ScreenDetails.vue')
         }

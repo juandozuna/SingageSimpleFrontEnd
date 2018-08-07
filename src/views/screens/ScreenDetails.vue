@@ -54,11 +54,6 @@
             | {{slide.title}} <span class="grey-text text-lighten-1 smallText">{{slide.role}}</span>
             img.right(:src="slide.image",v-if="slide.role == 'image'",width="40px",height="30px")
             video-embeder.right(v-else, :type="slide.role", :code="slide.video", :showControls="false", :autoplay="false" styles="height: 30px; width: 40px; display: inline-block")
-
-            
-  
-
-          
     
 </template>
 
@@ -89,9 +84,7 @@ export default {
   },
   methods: {
     getDetails(){
-      console.log(`${apiUrl}/slides/${this.$route.params.name}`);
-      this.text = `${apiUrl}/slides/${this.$route.params.name}`;
-      Axios.get(`${apiUrl}/screens/${this.$route.params.name}`)
+      Axios.get(`${apiUrl}/screens/single/${this.$route.params.name}`)
         .then((resp) => {
           console.log('data');
           console.log(resp);
@@ -147,7 +140,7 @@ export default {
             {
               console.log(resp.data);
               this.name = this.screen.name;
-              this.$router.push(`/${this.screen.name}/details`);
+              //this.$router.push(`/${this.screen.name}/details`);
               M.toast({html: "The " + this.screen.name + " data was succesfully updated", classes: ' green'});
             }
             else if(resp.data.nModified === 0){
