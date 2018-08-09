@@ -1,6 +1,7 @@
 <template>
-    <div class="card col" :class="colSize">
-    <div class="card-image waves-effect waves-block waves-light">
+<div :class="{disabled: !slide.visible}">
+    <div class="card col" :class="colSize" >
+    <div class="card-image waves-effect waves-block waves-light" >
       <img class="activator" :src="slide.image" v-if="slide.role === 'image'" style="width: 100%; height: 10em">
       <div v-else class="round-border z-depth-1">
         <video-embeder :code="slide.video" :type="slide.role" :autoplay="false" styles="width: 100%; height: 9.6em"></video-embeder>
@@ -11,9 +12,9 @@
         <span v-show="slide.title.length >= 12">...</span>
       </span>
       <span class="right col s4">
-        <input type="text" v-model="slide.displayOrder" @change="update">
+        <input type="number" v-model="slide.displayOrder" @change="ordered">
       </span>
-      <a href="#">Details</a> &nbsp; <a href="#" class="activator">Options</a>
+      <router-link :to="{name: 'slide.detail', params: {id: slide._id}}" >Details</router-link> &nbsp; <a href="#" class="activator">Options</a>
       <button class="btn-small red lighten-2 white-text round-border z-depth-2" @click="removeFromScreen" v-show="deleteBtn">Remove</button>
     </div>
     <div class="card-reveal">
@@ -37,6 +38,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -81,6 +83,8 @@ export default {
         overlayHtml: this.slide.overlayHtml,
         displayOrder: parseInt(this.slide.displayOrder)
       };
+      console.log('edit slide data');
+      console.log(data);
       Axios.post(uri, data)
       .then(resp => {
         console.log(resp.data);
@@ -90,8 +94,9 @@ export default {
         console.log(err)
       });
     },
-    order(){
+    ordered(){
        this.update();
+       this.$emit('updated')
     }
   }
 }
