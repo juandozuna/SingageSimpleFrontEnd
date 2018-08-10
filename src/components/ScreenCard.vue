@@ -12,6 +12,7 @@
         <div class="card-action">
           <router-link :to="{name: 'screen.detail', params: {id: screen._id}}">Details</router-link>
           <a class="activator click-pointer" @click="options">Options</a>
+          <button class="right btn-small red darken-2 white-text round-border no-border z-depth-4" @click="remove(slide)" v-show="deleteable">Remove</button>
         </div>
         <div class="card-reveal">
           <span class="card-title click-pointer" @click="opened = false">{{sdata.name}} &nbsp; &nbsp; X</span> 
@@ -56,7 +57,7 @@ const apiUrl = require('../assets/variables.js').apiUrl;
 const eventBus = require('../assets/events.js').eventBus;
 export default {
   name: "slide-card",
-  props: ['screen', 'frameworks'],
+  props: ['screen', 'frameworks', 'slide', 'deleteable'],
   data(){
     return{
       sdata: {
@@ -113,6 +114,23 @@ export default {
         M.toast({html: "There was an error while trying to update the Slide", classes: ' red'});
         this.reset();
       })
+    },
+    remove(slide){
+      let sid = this.screen._id;
+
+      let data = {
+        screens: [sid]
+      };
+      axios.post(`${apiUrl}/slides/screen/removeslide/${slide._id}`, data)
+        .then(resp => {
+          console.log(resp);
+          this.$emit('removed', this.screen);
+          M.toast({html: "Slide succesfully removed from Screen", classes: 'green darken-2'});
+        })
+        .catch(err => {
+          console.error(err);
+          M.toast({html: "There was an error while trying to remove the slide from the screen", classes: 'red darken-2'});
+        })
     }
   },
   mounted(){

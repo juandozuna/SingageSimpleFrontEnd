@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    h2.center-align Hello My People
+    h2.center-align Ad
 </template>
 
 

@@ -2,7 +2,7 @@
 <div>
   <div class="row margin-top">
       <h4 class="primary-text left">Registered Slides</h4>
-      <a class="btn-floating btn-large waves-effect waves-light red right margin-top" style="margin-right: 50px" title="Add Screen"><i class="material-icons">add</i></a>
+      <router-link :to="{name: 'slide.add'}" class="btn-floating btn-large waves-effect waves-light red right margin-top" style="margin-right: 50px" title="Add Screen"><i class="material-icons">add</i></router-link>
     </div>
     <div class="row">
       <slide-card v-for="(slide, key) in slides" :key="key" colSize="s2" :slide="slide" @updated="sort"></slide-card>

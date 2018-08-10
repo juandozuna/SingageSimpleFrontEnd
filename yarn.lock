@@ -3295,6 +3295,10 @@ ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
 
+interact.js@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/interact.js/-/interact.js-1.2.8.tgz#b62bc004563b5c6f294b6b115b396205d843f60b"
+
 internal-ip@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/internal-ip/-/internal-ip-1.2.0.tgz#ae9fbf93b984878785d50a8de1b356956058cf5c"
@@ -6413,6 +6417,13 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
+vue-interact@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/vue-interact/-/vue-interact-0.0.2.tgz#77dec8da908e6ccbc5341a346f8885311170b772"
+  dependencies:
+    interact.js "^1.2.8"
+    vue "^2.3.3"
+
 vue-loader@^15.2.4:
   version "15.2.6"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.2.6.tgz#4ad4e56a0ca1fd89ebc4220f9e3bd4723097b397"
@@ -6445,9 +6456,19 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@^2.5.16:
+vue2-timepicker@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/vue2-timepicker/-/vue2-timepicker-0.1.4.tgz#0809d9b07e9c8642de360044b6a14c2b7f203815"
+  dependencies:
+    vue "^2.0.1"
+
+vue@^2.0.1, vue@^2.3.3, vue@^2.5.16:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
+
+vuex@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
 
 watchpack@^1.5.0:
   version "1.6.0"

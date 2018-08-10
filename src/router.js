@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Screen from './views/Screens.vue'
 import Slide from './views/Slides.vue'
 import SlideDetails from './views/slides/SlidesDetails.vue'
+import SlideAdd from './views/slides/SlideAdd.vue'
 import ScreenDetails from './views/screens/ScreenDetails.vue'
 import ScreenAdd from './views/screens/ScreenAdd.vue'
 import Testing from './views/Testing.vue'
@@ -45,6 +46,11 @@ export default new Router({
           path: ':id/details',
           name: 'slide.detail',
           component: SlideDetails
+        },
+        {
+          path: 'add',
+          name: 'slide.add',
+          component: SlideAdd
         }
       ]
     },
